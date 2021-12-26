@@ -2,12 +2,9 @@ import cv2
 import os
 from keras.models import load_model
 import numpy as np
-from pygame import mixer
 import time
 
 
-mixer.init()
-sound = mixer.Sound('alarm.wav')
 
 face = cv2.CascadeClassifier('haar cascade files\haarcascade_frontalface_alt.xml')
 leye = cv2.CascadeClassifier('haar cascade files\haarcascade_lefteye_2splits.xml')
@@ -17,7 +14,7 @@ reye = cv2.CascadeClassifier('haar cascade files\haarcascade_righteye_2splits.xm
 
 lbl=['Close','Open']
 
-model = load_model('models/cnncat2.h5')
+model = load_model('models/cnnCat2.h5')
 path = os.getcwd()
 cap = cv2.VideoCapture(0)
 font = cv2.FONT_HERSHEY_COMPLEX_SMALL
@@ -33,16 +30,17 @@ while(True):
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     
-    faces = face.detectMultiScale(gray,minNeighbors=5,scaleFactor=1.1,minSize=(25,25))
+    faces = face.detectMultiScale(frame,minNeighbors=5,scaleFactor=1.1,minSize=(25,25))
     left_eye = leye.detectMultiScale(gray)
     right_eye =  reye.detectMultiScale(gray)
 
     cv2.rectangle(frame, (0,height-50) , (200,height) , (0,0,0) , thickness=cv2.FILLED )
 
     for (x,y,w,h) in faces:
-        cv2.rectangle(frame, (x,y) , (x+w,y+h) , (100,100,100) , 1 )
+        cv2.rectangle(frame, (x,y) , (x+w,y+h) , (0,0,255) , 2 )
 
     for (x,y,w,h) in right_eye:
+        cv2.rectangle(frame, (x,y) , (x+w,y+h) , (0,255,0) , 2 )
         r_eye=frame[y:y+h,x:x+w]
         count=count+1
         r_eye = cv2.cvtColor(r_eye,cv2.COLOR_BGR2GRAY)
@@ -59,6 +57,7 @@ while(True):
         break
 
     for (x,y,w,h) in left_eye:
+        cv2.rectangle(frame, (x,y) , (x+w,y+h) , (0,255,0) , 2 )
         l_eye=frame[y:y+h,x:x+w]
         count=count+1
         l_eye = cv2.cvtColor(l_eye,cv2.COLOR_BGR2GRAY)  
@@ -86,7 +85,7 @@ while(True):
     if(score<0):
         score=0   
     cv2.putText(frame,'Score:'+str(score),(100,height-20), font, 1,(255,255,255),1,cv2.LINE_AA)
-    if(score>15):
+    if(score>50):
         #person is feeling sleepy so we beep the alarm
         cv2.imwrite(os.path.join(path,'image.jpg'),frame)
         try:
