@@ -55,6 +55,6 @@ model.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accurac
 
 print(model)
 
-model.fit_generator(train_batch, validation_data=valid_batch,epochs=100,steps_per_epoch=SPE ,validation_steps=VS)
+model.fit_generator(train_batch, validation_data=valid_batch,epochs=50,steps_per_epoch=SPE ,validation_steps=VS)
 
 model.save('models/cnnCat2.h5', overwrite=True)
