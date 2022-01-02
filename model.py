@@ -1,18 +1,18 @@
-import os
 from keras.preprocessing import image
-import matplotlib.pyplot as plt 
-import numpy as np
 from keras.utils.np_utils import to_categorical
-import random,shutil
 from keras.models import Sequential
-from keras.layers import Dropout,Conv2D,Flatten,Dense, MaxPooling2D, BatchNormalization
-from keras.models import load_model
+from keras.layers import Dropout,Conv2D,Flatten,Dense, MaxPooling2D
 
 
 def generator(dir, gen=image.ImageDataGenerator(rescale=1./255), shuffle=True,batch_size=1,target_size=(24,24),class_mode='categorical' ):
 
     return gen.flow_from_directory(dir,batch_size=batch_size,shuffle=shuffle,color_mode='grayscale',class_mode=class_mode,target_size=target_size)
 
+
+
+# CNN YAPAY SİNİR AĞLARININ GÖRÜNTÜ İŞLEME İÇİN KULLANILAN ÖZEL BİR DALIDIR.
+
+# DATASET TANIMLANIR
 BS= 32
 TS=(24,24)
 train_batch= generator('data/train',shuffle=True, batch_size=BS,target_size=TS)
@@ -51,10 +51,11 @@ model = Sequential([
     Dense(2, activation='softmax')
 ])
 
+
 model.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
 
 print(model)
 
-model.fit_generator(train_batch, validation_data=valid_batch,epochs=50,steps_per_epoch=SPE ,validation_steps=VS)
+model.fit_generator(train_batch, validation_data=valid_batch,epochs=25,steps_per_epoch=SPE ,validation_steps=VS)
 
 model.save('models/cnnCat2.h5', overwrite=True)

@@ -4,7 +4,7 @@ import os
 from keras.backend import print_tensor
 import numpy as np
 from keras.models import load_model
-from datetime import datetime   
+from datetime import datetime
 
 
 now = datetime.now()
@@ -13,14 +13,13 @@ start_time = datetime.strptime(start_time_str, "%H:%M:%S")
 
 top_uyuma_sayisi = 0
 
-
-
-
+#SAĞ VE SOL GÖZÜ TESPİT EDEN OPENCV XML DOSYALARI
 leye = cv2.CascadeClassifier('haar cascade files\haarcascade_lefteye_2splits.xml')
 reye = cv2.CascadeClassifier('haar cascade files\haarcascade_righteye_2splits.xml')
 
 lbl=['Close','Open']
 
+#MODEL YÜKLEMESİ
 model = load_model('models/cnncat2.h5')
 path = os.getcwd()
 cap = cv2.VideoCapture(0)
@@ -32,45 +31,34 @@ rpred=[99]
 lpred=[99]
 name = "Unknown"
 
-# This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
-# other example, but it includes some basic performance tweaks to make things run a lot faster:
-#   1. Process each video frame at 1/4 resolution (though still display it at full resolution)
-#   2. Only detect faces in every other frame of video.
-
-# PLEASE NOTE: This example requires OpenCV (the `cv2` library) to be installed only to read from your webcam.
-# OpenCV is *not* required to use the face_recognition library. It's only required if you want to run this
-# specific demo. If you have trouble installing it, try any of the other demos that don't require it instead.
-
-# Get a reference to webcam #0 (the default one)
 video_capture = cv2.VideoCapture(0)
 
-
-# Load a first sample picture and learn how to recognize it.
+#TANINAN YÜZLERİN EKLENMESİ
 yasin_seven_image = face_recognition.load_image_file("yasin_seven.jpg")
 yasin_seven_face_encoding = face_recognition.face_encodings(yasin_seven_image)[0]
 
-# Load a first sample picture and learn how to recognize it.
 ogulcan_galata_image = face_recognition.load_image_file("ogulcan_galata.jpeg")
 ogulcan_galata_face_encoding = face_recognition.face_encodings(ogulcan_galata_image)[0]
 
-# Load a first sample picture and learn how to recognize it.
 oguzhan_yilmaz_image = face_recognition.load_image_file("oguzhan_yilmaz.jpeg")
 oguzhan_yilmaz_face_encoding = face_recognition.face_encodings(oguzhan_yilmaz_image)[0]
 
-# Create arrays of known face encodings and their names
+#TANINAN YÜZLERİN LİSTESİ
 known_face_encodings = [
     yasin_seven_face_encoding,
     ogulcan_galata_face_encoding,
     oguzhan_yilmaz_face_encoding
 
 ]
+
+#TANINAN YÜZLERİN TEXTLERİ
 known_face_names = [
     "Yasin Seven",
     "Ogulcan Galata",
     "Oguzhan Yilmaz"
 ]
 
-# Initialize some variables
+
 face_locations = []
 face_encodings = []
 face_names = []
@@ -104,11 +92,6 @@ while True:
             # See if the face is a match for the known face(s)
             matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
             name = "Unknown"
-
-            # # If a match was found in known_face_encodings, just use the first one.
-            # if True in matches:
-            #     first_match_index = matches.index(True)
-            #     name = known_face_names[first_match_index]
 
             # Or instead, use the known face with the smallest distance to the new face
             face_distances = face_recognition.face_distance(known_face_encodings, face_encoding)
@@ -177,7 +160,6 @@ while True:
         if (score <= 30):
             score=score+1
         print(name, " ", str(score))
-    # if(rpred[0]==1 or lpred[0]==1):
     else:
         if(score<=0):
             score=0  
@@ -197,7 +179,7 @@ while True:
             print(top_uyuma_sayisi)
             isFirst=False
 
-            #person is feeling sleepy so we beep the alarm
+            #KANIT İÇİN RESİM ÇEK
             cv2.imwrite(os.path.join(path,'image.jpg'),frame)
             try:
                 print("uyuma")
