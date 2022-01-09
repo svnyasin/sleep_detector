@@ -1,11 +1,11 @@
 
 ----------------------------------------------------------------------------------
-Isim :Yasin Seven
+Isim :Oguzhan Yilmaz
 Sistem baslangic zamani 23:47:43
 Sistem calisma suresi: 0:01:57
 Uyuma sayisi :5
 ----------------------------------------------------------------------------------
-Isim :Yasin Seven
+Isim :Ogulcan Galata
 Sistem baslangic zamani 23:50:06
 Sistem calisma suresi: 0:00:21
 Uyuma sayisi :1
@@ -14,3 +14,18 @@ Isim :Yasin Seven
 Sistem baslangic zamani 00:17:54
 Sistem calisma suresi: 0:00:29
 Uyuma sayisi :2
+----------------------------------------------------------------------------------
+Isim :Yasin Seven
+Sistem baslangic zamani 14:59:00
+Sistem calisma suresi: 0:01:19
+Uyuma sayisi :3
+----------------------------------------------------------------------------------
+Isim :Yasin Seven
+Sistem baslangic zamani 00:13:38
+Sistem calisma suresi: 0:01:17
+Uyuma sayisi :3
+----------------------------------------------------------------------------------
+Isim :Yasin Seven
+Sistem baslangic zamani 00:18:11
+Sistem calisma suresi: 0:01:04
+Uyuma sayisi :3
