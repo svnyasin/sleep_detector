@@ -84,15 +84,15 @@ tespit edilir.
 
 ![](./images/media/image1.png)
 
-> **Adım 2:** Kullandığımız model, Evrişimli Sinir Ağları
-> (CNN) kullanılarak Keras ile oluşturulmuştur. Bir evrişimli sinir ağı,
-> görüntü sınıflandırma amaçları için son derece iyi performans gösteren
-> özel bir derin sinir ağı türüdür. Bir CNN temel olarak bir girdi
-> katmanı, bir çıktı katmanı ve birden çok katmana sahip olabilen bir
-> gizli katmandan oluşur. Katman ve filtre üzerinde 2B matris çarpımı
-> gerçekleştiren bir filtre kullanılarak bu katmanlar üzerinde bir
-> evrişim işlemi gerçekleştirilir. CNN model mimarisi aşağıdaki
-> katmanlardan oluşur:
+**Adım 2:** Kullandığımız model, Evrişimli Sinir Ağları
+(CNN) kullanılarak Keras ile oluşturulmuştur. Bir evrişimli sinir ağı,
+görüntü sınıflandırma amaçları için son derece iyi performans gösteren
+özel bir derin sinir ağı türüdür. Bir CNN temel olarak bir girdi
+katmanı, bir çıktı katmanı ve birden çok katmana sahip olabilen bir
+gizli katmandan oluşur. Katman ve filtre üzerinde 2B matris çarpımı
+gerçekleştiren bir filtre kullanılarak bu katmanlar üzerinde bir
+evrişim işlemi gerçekleştirilir. CNN model mimarisi aşağıdaki
+katmanlardan oluşur:
 
 -   Evrişimsel katman; 32 düğüm, çekirdek boyutu 3
 
